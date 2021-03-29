@@ -10,128 +10,111 @@
 </head>
 
 <body>
+    <div class="card border-success mb-3 col-md-offset-1" style="width: 100%;">
+        
+        <div class="card-body text-dark">
+            
+            <div class="container">
+                
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label>Cursos:</label>
+                                    <select class="form-control" [(ngModel)]="cursosel" (change)="setCurso()"
+                                        name="cursosel">
+                                        <option>Fundamentos de Programacion</option>
+                                        <option>Java EE</option>
+                                        <option>Java SE</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label>Periodos:</label>
+                                    <select class="form-control" [(ngModel)]="periodosel" (change)="setPeriodo()"
+                                        name="periodosel">
+                                        <option>Octubre 2020 - Diciembre 2021</option>
+                                        <option>Enero 2021 - Marzo 2021</option>
+                                        <option>Abril 2021 - Junio 2021</option>
+                                        <option>Julio 2021 - Septiembre 2021</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="card" style="width: 60%;">
+                                <div class="card border-success mb-3">
+                                    <div class="card-body text-success">
+                                        <div *ngIf="!filtroinstructor" class="form-group">
+
+                                            <table class="table table-bordered table-stripped"
+                                                style="text-align: center;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>NUMERO DEL INSTRUCTOR</th>
+                                                        <th>CEDULA DEL INSTRUCTOR</th>
+                                                        <th>NOMBRE</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <tr *ngFor="let instructor of instructores">
+                                                        <td>{{instructor.idInstructor}}</td>
+                                                        <td>{{instructor.cedula}}</td>
+                                                        <td>{{instructor.nombre}}</td>
+
+                                                        <!--<td><input type="checkbox" [(ngModel)]="selcurso" name="{{curso.idCurso}"></td>-->
+                                                        <button (click)="asignarInstructor(instructor)"
+                                                            class="btn btn-primary">Asignar Instructor</button>
+                                                    </tr>
 
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+                                                </tbody>
 
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <div class="col-sm-6">
-                            <label>Cursos:</label>
-                            <select class="form-control" [(ngModel)]="cursosel" (change)="setCurso()" name="cursosel">
-                                <option>Fundamentos de Programacion</option>
-                                <option>Java EE</option>
-                                <option>Java SE</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Periodos:</label>
-                            <select class="form-control" [(ngModel)]="periodosel" (change)="setPeriodo()" name="periodosel">
-                                <option>Octubre 2020 - Diciembre 2021</option>
-                                <option>Enero 2021 - Marzo 2021</option>
-                                <option>Abril 2021 - Junio 2021</option>
-                                <option>Julio 2021 - Septiembre 2021</option>
-                            </select>
-                        </div>
+                                            </table>
+
+
+                                        </div>
+
+                                        <div *ngIf="filtroinstructor" class="form-group">
+
+                                            <div class="col-md-4">
+                                                <label>Cédula</label>
+                                                <input disabled type="text" class="form-control"
+                                                    [ngModel]="cedulainstructorsel" name="cedulainstructorsel">
+                                            </div>
+
+                                            <div class="col-md-8">
+                                                <label>Nombre</label>
+                                                <input disabled type="text" class="form-control"
+                                                    [ngModel]="nombreinstructorsel" name="nombreinstructorsel">
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <button class="btn btn-primary" (click)="create()">Guardar</button>
+
+
+                            </div>
+
+
+                        </form>
                     </div>
-
-                    <!--<div class="form-group">
-                        <div class="col-sm-4">
-                            <label for="dninstructorsel">Cedula de los Instructores:</label>
-                            <select class="form-control" 
-                            [(ngModel)]="dninstructorsel" 
-                            name="dninstructorsel"
-                            (change)="asignarInstructor()">
-                                <option *ngFor="let ins of instructores">
-                                    {{ins.dniInstructor}}</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="nombreinstructorsel">Nombre del Instructor:</label>
-                            <input type="text" class="form-control" 
-                                name="nombreinstructorsel" [(ngModel)]="nombreinstructorsel">
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label for="apellidoinstructorsel">Apellido del Instructor:</label>
-                            <input type="text" class="form-control" 
-                                name="apellidoinstructorsel" [(ngModel)]="apellidoinstructorsel">
-                        </div>
-                        
-                    </div>-->
-
-                    <div *ngIf="!filtroinstructor" class="form-group">
-
-                        <table class="table table-bordered table-stripped">
-                            <thead>
-                                <tr>
-                                    <th>NUMERO DEL INSTRUCTOR</th>
-                                    <th>CEDULA DEL INSTRUCTOR</th>
-                                    <th>NOMBRE</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <tr *ngFor="let instructor of instructores">
-                                    <td>{{instructor.idInstructor}}</td>
-                                    <td>{{instructor.cedula}}</td>
-                                    <td>{{instructor.nombre}}</td>
-                                 
-                                    <!--<td><input type="checkbox" [(ngModel)]="selcurso" name="{{curso.idCurso}"></td>-->
-                                    <button (click)="asignarInstructor(instructor)" 
-                                    class="btn btn-primary">Asignar Instructor</button>
-                                </tr>
-
-
-                            </tbody>
-
-                        </table>
-
-
-                    </div>
-
-                    <div *ngIf="filtroinstructor" class="form-group">
-
-                        <div class="col-md-4">
-                            <label>Cédula</label>
-                            <input disabled type="text" class="form-control" [ngModel]="cedulainstructorsel"
-                                name="cedulainstructorsel">
-                        </div>
-
-                        <div class="col-md-8">
-                            <label>Nombre</label>
-                            <input disabled type="text" class="form-control" [ngModel]="nombreinstructorsel"
-                                name="nombreinstructorsel">
-                        </div>
-                       
-                       
-                        
-                    </div>
-
-                    <div class="form-group">
-
-                        <button class="btn btn-primary" (click)="create()">Guardar</button>
-
-
-                    </div>
-
-
-                </form>
+                </div>
             </div>
-
-
-
-
-
-
         </div>
     </div>
 
 
-
 </body>
+
 </html>

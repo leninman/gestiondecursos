@@ -26,7 +26,8 @@ export class CursosService {
   }
 
   getInstructor(cedula:string): Observable<Instructores>{
-    return this.http.get<Instructores>(`${this.urlEndPoint+'consultarinstructor'}/${cedula}`)
+    return this.http.get<Instructores>(`${this.urlEndPoint+'consultarinstructor'}/${cedula}`);
+    
   }
 
   create(curso: Cursos) : Observable<Cursos> {
@@ -35,6 +36,7 @@ export class CursosService {
 
   delete(id: number): Observable<Cursos>{
     return this.http.delete<Cursos>(`${this.urlEndPoint+'eliminarcurso'}/${id}`, {headers: this.httpHeaders})
+  
   }
 
 

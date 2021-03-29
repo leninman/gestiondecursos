@@ -29,8 +29,8 @@ export class CursosComponent implements OnInit {
       response => {
         this.cursos = this.cursos.filter(cur => cur !== curso)
         swal.fire(
-          'Cliente Eliminado!',
-          `Cliente ${curso.curso} eliminado con éxito.`,
+          'Curso Eliminado!',
+          `Curso ${curso.curso} eliminado con éxito.`,
           'success'
         )
       }
