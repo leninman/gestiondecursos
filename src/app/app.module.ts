@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { RegistrodecursoComponent } from './cursos/registrodecurso/registrodecurso.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     CursosComponent,
     RegistrodecursoComponent
+    
   ],
   imports: [
     BrowserModule,

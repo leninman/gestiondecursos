@@ -51,7 +51,7 @@ export class RegistrodecursoComponent implements OnInit {
     this.cursoService.create(this.curso)
       .subscribe(curso => {
         this.router.navigate(['/cursos'])
-        swal.fire('Nuevo curso', `Curso ${curso.curso} creado con éxito!`, 'success')
+        swal.fire('Nuevo instructor asignado', `Instructor ${curso.nombreInstructor}  asignado al curso ${curso.curso} `, 'success')
       }
       );
   }

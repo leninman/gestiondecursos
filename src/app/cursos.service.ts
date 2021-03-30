@@ -25,8 +25,8 @@ export class CursosService {
     return this.http.get(this.urlEndPoint+'consultarinstructores').pipe(map(response =>response as Instructores[]));
   }
 
-  getInstructor(cedula:string): Observable<Instructores>{
-    return this.http.get<Instructores>(`${this.urlEndPoint+'consultarinstructor'}/${cedula}`);
+  getCurso(id:number): Observable<Cursos>{
+    return this.http.get<Cursos>(`${this.urlEndPoint+'consultarinstructor'}/${id}`);
     
   }
 

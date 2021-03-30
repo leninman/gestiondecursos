@@ -23,8 +23,16 @@ export class CursosComponent implements OnInit {
     );
   }
 
-  delete(curso: Cursos): void {
+  cargarCurso(): void{
+    this.activatedRoute.params.subscribe(params => {
+      let id = params['id']
+      if(id){
+        this.cursosService.getCurso(id).subscribe( (curso) => this.curso = curso)
+      }
+    })
+  }
 
+  delete(curso: Cursos): void {
     this.cursosService.delete(curso.idCurso).subscribe(
       response => {
         this.cursos = this.cursos.filter(cur => cur !== curso)
